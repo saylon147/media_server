@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .media-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Media Server</h1>
+    <div id="media-list"></div>
+
+    <script>
+        fetch('/media/list')
+            .then(response => response.json())
+            .then(data => {
+                const mediaList = document.getElementById('media-list');
+                data.forEach(file => {
+                    const mediaItem = document.createElement('div');
+                    mediaItem.classList.add('media-item');
+                    if (file.endsWith('.mp4')) {
+                        mediaItem.innerHTML = `<video width="320" height="240" controls>
+                                                  <source src="/media/${file}" type="video/mp4">
+                                                  Your browser does not support the video tag.
+                                              </video>`;
+                    } else {
+                        mediaItem.innerHTML = `<img src="/media/${file}" width="320" height="240" />`;
+                    }
+                    mediaList.appendChild(mediaItem);
+                });
+            });
+    </script>
+</body>
+</html>
