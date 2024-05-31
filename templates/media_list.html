@@ -132,6 +132,10 @@
             border-radius: 0 3px 3px 0;
             user-select: none;
         }
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
         .next {
             right: 0;
             border-radius: 3px 0 0 3px;
@@ -150,8 +154,8 @@
     <div id="myModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content">
-            <img id="modal-img" src="">
             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <img id="modal-img" src="">
             <a class="next" onclick="changeSlide(1)">&#10095;</a>
         </div>
     </div>
